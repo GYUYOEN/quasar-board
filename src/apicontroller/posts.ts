@@ -1,18 +1,16 @@
 import axios from 'axios';
+import { PostsResponse } from '../assets/interfaces/index';
 
-interface PostsResponse {
-  postId: number;
-  postTitle: string;
-  writer: string;
-  department: string;
-  postDatetime: Date;
-  views: number;
-}
-
-export const posts = async (): Promise<PostsResponse[]> => {
+export const posts = async (
+  page = 1,
+  pageSize = 10
+): Promise<PostsResponse> => {
   try {
-    const response = await axios.post<PostsResponse[]>(
-      'http://localhost:5144/community/posts'
+    const response = await axios.get<PostsResponse>(
+      'http://localhost:5144/community/posts',
+      {
+        params: { page, pageSize },
+      }
     );
     console.log('서버 통신 ok');
     return response.data;
