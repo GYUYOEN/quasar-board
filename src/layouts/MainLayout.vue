@@ -26,7 +26,12 @@
       <q-scroll-area class="fit">
         <q-list>
           <template v-for="(menuItem, index) in menuList" :key="index">
-            <q-item clickable :active="menuItem.label === 'Outbox'" v-ripple>
+            <q-item
+              clickable
+              :active="menuItem.label === 'Outbox'"
+              v-ripple
+              @click="handleMenuItemClick(menuItem.route)"
+            >
               <q-item-section avatar>
                 <q-icon :name="menuItem.icon" />
               </q-item-section>
@@ -42,57 +47,28 @@
 
     <q-page-container>
       <q-page padding>
-        <router-view />
+        <router-view :route-info="currentRoute" />
       </q-page>
     </q-page-container>
   </q-layout>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import GenieLogo from '../assets/img/Genie_logo.png';
-
-const menuList = [
-  {
-    icon: 'inbox',
-    label: 'Inbox',
-    separator: true,
-  },
-  {
-    icon: 'send',
-    label: 'Outbox',
-    separator: false,
-  },
-  {
-    icon: 'delete',
-    label: 'Trash',
-    separator: false,
-  },
-  {
-    icon: 'error',
-    label: 'Spam',
-    separator: true,
-  },
-  {
-    icon: 'settings',
-    label: 'Settings',
-    separator: false,
-  },
-  {
-    icon: 'feedback',
-    label: 'Send Feedback',
-    separator: false,
-  },
-  {
-    icon: 'help',
-    iconColor: 'primary',
-    label: 'Help',
-    separator: false,
-  },
-];
+import { menuList } from '../assets/column/index';
+import { useRouter, useRoute } from 'vue-router';
 
 const drawer = ref(false);
 const tab = ref('images');
+const router = useRouter();
+const route = useRoute();
+
+const currentRoute = computed(() => route.fullPath);
+
+const handleMenuItemClick = (route: string) => {
+  router.push(route);
+};
 </script>
 
 <style scoped>

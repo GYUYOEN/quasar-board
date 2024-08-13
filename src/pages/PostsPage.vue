@@ -4,6 +4,7 @@
       <posts-component
         :current-page="currentPage"
         :rows-per-page="rowsPerPage"
+        :route-info="currentRoute"
         @update:total-pages="totalPages = $event"
       ></posts-component>
     </div>
@@ -17,11 +18,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useRoute } from 'vue-router';
 import PostsComponent from 'components/PostsComponent.vue';
 import PageComponent from 'components/PageComponent.vue';
 
+const route = useRoute();
 const currentPage = ref(1);
 const rowsPerPage = ref(20);
 const totalPages = ref(0);
+
+const currentRoute = computed(() => route.fullPath);
 </script>

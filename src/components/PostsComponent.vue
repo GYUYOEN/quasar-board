@@ -22,6 +22,7 @@ import { postColumn } from '../assets/column/index';
 const props = defineProps<{
   currentPage: number;
   rowsPerPage: number;
+  routeInfo: string;
 }>();
 
 const emit = defineEmits(['update:totalPages']);
@@ -32,12 +33,18 @@ const pagination = ref({
   rowsPerPage: props.rowsPerPage,
   totalPages: 0,
 });
+const routeCheck = ref(props.routeInfo);
 
 const fetchPosts = async () => {
+  var type = 'total';
+  if (routeCheck.value == '/notice_posts') {
+    type = 'notice';
+  }
   try {
     const response = await posts(
       pagination.value.page,
-      pagination.value.rowsPerPage
+      pagination.value.rowsPerPage,
+      type
     );
     rows.value = response.items.map((item: PostDto) => ({
       brdId: item.post_id,
@@ -53,6 +60,14 @@ const fetchPosts = async () => {
     console.error('게시물 가져오기 실패: ', error);
   }
 };
+
+watch(
+  () => props.routeInfo,
+  (newRouteInfo) => {
+    routeCheck.value = newRouteInfo;
+    fetchPosts();
+  }
+);
 
 watch(
   () => props.currentPage,

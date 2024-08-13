@@ -3,13 +3,14 @@ import { PostsResponse } from '../assets/interfaces/index';
 
 export const posts = async (
   page = 1,
-  pageSize = 10
+  pageSize = 10,
+  type = 'total'
 ): Promise<PostsResponse> => {
   try {
     const response = await axios.get<PostsResponse>(
       'http://localhost:5144/community/posts',
       {
-        params: { page, pageSize },
+        params: { page, pageSize, type },
       }
     );
     console.log('서버 통신 ok');
