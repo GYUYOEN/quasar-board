@@ -1,12 +1,15 @@
 import { RouteRecordRaw } from 'vue-router';
+import { menuList } from '../assets/column/index';
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '/posts', component: () => import('pages/PostsPage.vue') },
-      { path: '/notice_posts', component: () => import('pages/PostsPage.vue') },
+      ...menuList.map((list) => ({
+        path: `${list.route}`,
+        component: () => import('pages/PostsPage.vue'),
+      })),
     ],
   },
 

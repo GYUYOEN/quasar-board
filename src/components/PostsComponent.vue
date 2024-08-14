@@ -33,13 +33,9 @@ const pagination = ref({
   rowsPerPage: props.rowsPerPage,
   totalPages: 0,
 });
-const routeCheck = ref(props.routeInfo);
 
 const fetchPosts = async () => {
-  var type = 'total';
-  if (routeCheck.value == '/notice_posts') {
-    type = 'notice';
-  }
+  const type = props.routeInfo || '/posts';
   try {
     const response = await posts(
       pagination.value.page,
@@ -61,13 +57,7 @@ const fetchPosts = async () => {
   }
 };
 
-watch(
-  () => props.routeInfo,
-  (newRouteInfo) => {
-    routeCheck.value = newRouteInfo;
-    fetchPosts();
-  }
-);
+watch(() => props.routeInfo, fetchPosts);
 
 watch(
   () => props.currentPage,
