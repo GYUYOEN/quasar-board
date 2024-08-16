@@ -2,10 +2,10 @@ import { QTableColumn } from 'quasar';
 
 export const postColumn: QTableColumn[] = [
   {
-    name: 'brdId',
+    name: 'postId',
     label: '게시판',
     align: 'left',
-    field: 'brdId',
+    field: 'postId',
   },
   {
     name: 'postTitle',

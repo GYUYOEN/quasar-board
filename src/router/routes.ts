@@ -10,6 +10,12 @@ const routes: RouteRecordRaw[] = [
         path: `${list.route}`,
         component: () => import('pages/PostsPage.vue'),
       })),
+      {
+        path: '/posts/:postId',
+        name: 'PostDetail',
+        component: () => import('pages/PostIdPage.vue'),
+        props: true,
+      },
     ],
   },
 

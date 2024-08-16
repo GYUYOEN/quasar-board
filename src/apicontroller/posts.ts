@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { PostsResponse } from '../assets/interfaces/index';
 
-export const posts = async (
+export const getPosts = async (
   page = 1,
   pageSize = 10,
   type = 'total'

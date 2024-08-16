@@ -42,7 +42,7 @@ export interface PostDto {
 }
 
 export interface PostData {
-  brdId: number;
+  postId: number;
   postTitle: string;
   writer: string;
   department: string;
