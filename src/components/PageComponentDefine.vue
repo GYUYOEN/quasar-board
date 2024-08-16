@@ -1,8 +1,8 @@
 <!-- <template>
   <div class="q-pa-lg flex flex-center">
     <q-pagination
-      v-model="currentPage"
-      :max="store.totalPages"
+      v-model="currentPageModel"
+      :max="totalPages"
       :max-pages="9"
       :ellipses="false"
       :boundary-numbers="false"
@@ -18,12 +18,16 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { usePostsStore } from '../stores/postsStore';
 
-const store = usePostsStore();
+const props = defineProps<{
+  currentPage: number;
+  totalPages: number;
+}>();
 
-const currentPage = computed({
-  get: () => store.currentPage,
-  set: (value) => store.setCurrentPage(value),
+const emit = defineEmits(['update:currentPage']);
+
+const currentPageModel = computed({
+  get: () => props.currentPage,
+  set: (value) => emit('update:currentPage', value),
 });
 </script> -->

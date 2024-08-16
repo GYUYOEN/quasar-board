@@ -8,7 +8,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       ...menuList.map((list) => ({
         path: `${list.route}`,
-        component: () => import('pages/PostsPage.vue'),
+        component: () => import('src/pages/PostsPage.vue'),
       })),
       {
         path: '/posts/:postId',

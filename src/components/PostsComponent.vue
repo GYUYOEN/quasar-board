@@ -3,74 +3,52 @@
     <q-table
       flat
       bordered
-      :title="tableTitle"
-      :rows="rows"
+      :title="store.tableTitle"
+      :rows="store.posts"
       :columns="postColumn"
-      :rows-per-page-options="[pagination.rowsPerPage]"
+      :rows-per-page-options="[store.rowsPerPage]"
       row-key="postId"
       hide-bottom
+      @row-click="onRowClick"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch, computed } from 'vue';
-import { getPosts } from '../apicontroller/posts';
-import { PostDto, PostData } from '../assets/interfaces/index';
-import { menuList, postColumn } from '../assets/column/index';
-
+import { onMounted, watch } from 'vue';
+import { usePostsStore } from '../stores/postsStore';
+import { postColumn } from '../assets/column/index';
+import { getPostDetail } from 'src/apicontroller/postDetail';
+import { useRouter } from 'vue-router';
 
 const props = defineProps<{
-  currentPage: number;
-  rowsPerPage: number;
   routeInfo: string;
 }>();
 
-const emit = defineEmits(['update:totalPages']);
-
-const rows = ref<PostData[]>([]);
-const pagination = ref({
-  page: props.currentPage,
-  rowsPerPage: props.rowsPerPage,
-  totalPages: 0,
-});
-const tableTitle = computed(() => {
-  const menuItem = menuList.find((item) => item.route === props.routeInfo);
-  return menuItem ? menuItem.label : '';
-});
-
-const fetchPosts = async () => {
-  const type = props.routeInfo || '/posts';
-  try {
-    const response = await getPosts(
-      pagination.value.page,
-      pagination.value.rowsPerPage,
-      type
-    );
-    rows.value = response.items.map((item: PostDto) => ({
-      postId: item.post_id,
-      postTitle: item.post_title,
-      writer: item.post_username,
-      department: item.mem_address1,
-      postDatetime: item.post_datetime,
-      postHit: item.post_hit,
-    }));
-    pagination.value.totalPages = response.totalPages;
-    emit('update:totalPages', response.totalPages);
-  } catch (error) {
-    console.error('게시물 가져오기 실패: ', error);
-  }
-};
-
-watch(() => props.routeInfo, fetchPosts);
+const router = useRouter();
+const store = usePostsStore();
 
 watch(
-  () => props.currentPage,
-  (newPage) => {
-    pagination.value.page = newPage;
-    fetchPosts();
+  () => props.routeInfo,
+  (newRoute) => {
+    store.setCurrentRoute(newRoute);
   }
 );
 
-onMounted(fetchPosts);
+const onRowClick = async (evt: Event, row: { postId: number }) => {
+  try {
+    const postData = await getPostDetail(row.postId);
+    router.push({
+      name: 'PostDetail',
+      params: { postId: row.postId },
+      state: { postData },
+    });
+  } catch (error) {
+    console.error('Error fetching post details:', error);
+  }
+};
+
+onMounted(() => {
+  store.setCurrentRoute(props.routeInfo);
+});
 </script>
