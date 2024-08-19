@@ -10,6 +10,7 @@ export const usePostsStore = defineStore('posts', {
     totalPages: 0,
     posts: [] as PostData[],
     currentRoute: '',
+    selectedPost: {} as PostDto,
   }),
   getters: {
     tableTitle: (state) => {
@@ -47,6 +48,9 @@ export const usePostsStore = defineStore('posts', {
     setCurrentRoute(route: string) {
       this.currentRoute = route;
       this.fetchPosts();
+    },
+    setSelectedPost(post: PostDto) {
+      this.selectedPost = post;
     },
   },
 });

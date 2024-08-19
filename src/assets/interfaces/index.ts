@@ -57,3 +57,13 @@ export interface PostsResponse {
   pageSize: number;
   totalPages: number;
 }
+
+export interface PostIdDto {
+  title: string;
+  profileImage: string;
+  name: string;
+  position: string;
+  department: string;
+  postDate: string;
+  content: string;
+}
