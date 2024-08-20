@@ -67,3 +67,13 @@ export interface PostIdDto {
   postDate: string;
   content: string;
 }
+
+export interface FilesResponse {
+  file_id: number;
+  original_name: string;
+  file_reference: string;
+  post_uuid: string;
+  use_at: number;
+  fileKB: number;
+  file_type?: string;
+}
