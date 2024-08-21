@@ -1,5 +1,16 @@
 <template>
   <div class="q-pa-md" style="max-width: 350px">
+    <div class="row items-center q-mb-md">
+      <div class="col">
+        <span class="text-h6"
+          >첨부파일 {{ filesStore.fileTotalCount }} 개
+        </span>
+      </div>
+      <div class="col-auto">
+        <q-btn color="primary" label="모두저장" />
+      </div>
+    </div>
+
     <q-list dense bordered padding class="rounded-borders">
       <q-item
         v-for="file in filesStore.files"

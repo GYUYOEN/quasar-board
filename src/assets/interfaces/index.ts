@@ -68,12 +68,14 @@ export interface PostIdDto {
   content: string;
 }
 
-export interface FilesResponse {
+export interface fileDataDto {
   file_id: number;
   original_name: string;
   file_reference: string;
-  post_uuid: string;
-  use_at: number;
   fileKB: number;
-  file_type?: string;
+}
+
+export interface FilesResponse {
+  fileDataDto: fileDataDto[];
+  fileTotalCount: number;
 }
