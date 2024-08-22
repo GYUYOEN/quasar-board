@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia';
 import { getFiles } from '../apicontroller/files';
-import { fileDataDto } from '../assets/interfaces/index';
+import { FileDataDto } from '../assets/interfaces/index';
 
 export const useFilesStore = defineStore('files', {
   state: () => ({
     postId: 0,
-    files: [] as fileDataDto[],
+    files: [] as FileDataDto[],
     fileTotalCount: 0,
   }),
   getters: {},

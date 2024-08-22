@@ -68,7 +68,7 @@ export interface PostIdDto {
   content: string;
 }
 
-export interface fileDataDto {
+export interface FileDataDto {
   file_id: number;
   original_name: string;
   file_reference: string;
@@ -76,6 +76,22 @@ export interface fileDataDto {
 }
 
 export interface FilesResponse {
-  fileDataDto: fileDataDto[];
+  fileDataDto: FileDataDto[];
   fileTotalCount: number;
+}
+
+export interface CommentDto {
+  cmt_id: number;
+  cmt_reply: string;
+  cmt_content: string | null;
+  cmt_username: string;
+  cmt_datetime: string | null;
+  cmt_like: number;
+  mem_address1: string | null;
+  mem_address3: string | null;
+}
+
+export interface CommentResponse {
+  commentDto: CommentDto[];
+  commentTotalCount: number;
 }
