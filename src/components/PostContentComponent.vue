@@ -28,6 +28,19 @@
     <q-card-section>
       <div class="post-content" v-html="post.post_content"></div>
     </q-card-section>
+
+    <q-card-section>
+      <div class="row items-center">
+        <q-btn
+          :color="post.post_like ? 'red' : 'grey'"
+          :icon="post.post_like ? 'favorite' : 'favorite_border'"
+          @click="toggleLike"
+          flat
+          round
+        />
+        <span class="q-ml-sm">{{ post.post_like || 0 }} 좋아요</span>
+      </div>
+    </q-card-section>
   </q-page>
 </template>
 
@@ -42,6 +55,12 @@ const post = computed(() => store.selectedPost);
 
 const formatDate = (dateString: string) => {
   return date.formatDate(dateString, 'YYYY-MM-DD HH:mm');
+};
+
+const toggleLike = () => {
+  // 여기에 좋아요 기능 구현
+  // 예: store.toggleLike(post.value.post_id);
+  console.log('좋아요 토글');
 };
 </script>
 

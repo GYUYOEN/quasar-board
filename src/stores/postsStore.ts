@@ -35,6 +35,7 @@ export const usePostsStore = defineStore('posts', {
           department: item.mem_address1,
           postDatetime: item.post_datetime,
           postHit: item.post_hit,
+          postLike: item.post_like,
         }));
         this.totalPages = response.totalPages;
       } catch (error) {

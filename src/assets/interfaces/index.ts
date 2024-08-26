@@ -48,6 +48,7 @@ export interface PostData {
   department: string;
   postDatetime: string;
   postHit: number;
+  postLike: number;
 }
 
 export interface PostsResponse {
