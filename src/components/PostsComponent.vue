@@ -10,7 +10,25 @@
       row-key="postId"
       hide-bottom
       @row-click="onRowClick"
-    />
+    >
+      <template v-slot:body-cell-post_id="props">
+        <q-td :props="props">
+          <div v-if="isTopPost(props.row)">Top</div>
+          <div v-else>{{ props.row.post_id }}</div>
+        </q-td>
+      </template>
+      <template v-slot:body-cell-post_title="props">
+        <q-td :props="props">
+          <div class="row items-center">
+            {{ props.row.post_title }}
+            <PostIcons
+              :post-date-time="props.row.post_datetime"
+              :post-id="props.row.post_id"
+            />
+          </div>
+        </q-td>
+      </template>
+    </q-table>
   </div>
 </template>
 
@@ -21,6 +39,7 @@ import { postColumn } from '../assets/column/index';
 import { getPostDetail } from 'src/apicontroller/postDetail';
 import { useRouter } from 'vue-router';
 import { PostDto } from 'src/assets/interfaces';
+import PostIcons from '../components/PostIconsComponent.vue';
 
 const props = defineProps<{
   routeInfo: string;
@@ -28,6 +47,13 @@ const props = defineProps<{
 
 const router = useRouter();
 const store = usePostsStore();
+
+const isTopPost = (row: PostDto) => {
+  if (!row.notice_end_date) return false;
+  const now = new Date();
+  const endDate = new Date(row.notice_end_date);
+  return row.post_notice === 1 && endDate > now;
+};
 
 const onRowClick = async (evt: Event, row: PostDto) => {
   try {

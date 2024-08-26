@@ -28,7 +28,10 @@ export const usePostsStore = defineStore('posts', {
           this.rowsPerPage,
           this.currentRoute || '/posts'
         );
-        this.posts = response.items;
+        this.posts = response.items.map((post) => ({
+          ...post,
+          post_datetime: post.post_datetime.split('T')[0],
+        }));
         this.totalPages = response.totalPages;
       } catch (error) {
         console.log('게시물 목록 가져오기 실패: ', error);
