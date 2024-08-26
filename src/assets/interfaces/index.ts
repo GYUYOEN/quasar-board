@@ -41,16 +41,6 @@ export interface PostDto {
   mem_address4: string;
 }
 
-export interface PostData {
-  postId: number;
-  postTitle: string;
-  writer: string;
-  department: string;
-  postDatetime: string;
-  postHit: number;
-  postLike: number;
-}
-
 export interface PostsResponse {
   items: PostDto[];
   totalCount: number;

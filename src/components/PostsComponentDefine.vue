@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { ref, onMounted, watch, computed } from 'vue';
 import { getPosts } from '../apicontroller/posts';
-import { PostDto, PostData } from '../assets/interfaces/index';
+import { PostDto } from '../assets/interfaces/index';
 import { menuList, postColumn } from '../assets/column/index';
 
 
@@ -28,7 +28,6 @@ const props = defineProps<{
 
 const emit = defineEmits(['update:totalPages']);
 
-const rows = ref<PostData[]>([]);
 const pagination = ref({
   page: props.currentPage,
   rowsPerPage: props.rowsPerPage,

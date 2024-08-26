@@ -52,7 +52,7 @@ const store = useCommentsStore();
 const { comments } = storeToRefs(store);
 
 onMounted(() => {
-  store.postId = Number(route.params.postId);
+  store.setPostId(Number(route.params.postId));
   store.fetchComments();
 });
 

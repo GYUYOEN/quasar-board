@@ -2,40 +2,40 @@ import { QTableColumn } from 'quasar';
 
 export const postColumn: QTableColumn[] = [
   {
-    name: 'postId',
+    name: 'post_id',
     label: '게시판',
     align: 'left',
-    field: 'postId',
+    field: 'post_id',
   },
   {
-    name: 'postTitle',
+    name: 'post_title',
     label: '제목',
     align: 'left',
-    field: 'postTitle',
+    field: 'post_title',
   },
   {
-    name: 'writer',
+    name: 'post_username',
     label: '작성자',
     align: 'left',
-    field: 'writer',
+    field: 'post_username',
   },
   {
-    name: 'department',
+    name: 'mem_address3',
     label: '부서',
     align: 'left',
-    field: 'department',
+    field: 'mem_address3',
   },
   {
-    name: 'postDatetime',
+    name: 'post_datetime',
     label: '작성일',
     align: 'left',
-    field: 'postDatetime',
+    field: 'post_datetime',
   },
   {
-    name: 'postHit',
+    name: 'post_hit',
     label: '조회수',
     align: 'left',
-    field: 'postHit',
+    field: 'post_hit',
   },
 ];
 

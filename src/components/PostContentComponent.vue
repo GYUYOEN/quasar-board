@@ -10,15 +10,23 @@
         <q-avatar>
           <!-- <img :src="post.profileImage" /> -->
         </q-avatar>
-        <div>
-          <div class="text-weight-bold">{{ post.post_username }}</div>
+        <div class="col">
           <div class="text-caption">
-            {{ post.mem_address1 }} | {{ post.mem_address3 }}
+            {{ post.post_username }} | {{ post.mem_address1 }} |
+            {{ post.mem_address3 }}
           </div>
-        </div>
-        <q-space />
-        <div class="text-caption">
-          게시날짜: {{ formatDate(post.post_datetime) }}
+          <div class="row justify-between items-center q-mt-xs">
+            <div class="text-caption">
+              게시날짜: {{ formatDate(post.post_datetime) }}
+            </div>
+            <div class="row items-center q-gutter-sm">
+              <span class="text-caption"
+                >댓글 {{ commentsStore.getCommentCount || 0 }}</span
+              >
+              <span class="text-caption">조회 {{ post.post_hit || 0 }}</span>
+              <span class="text-caption">좋아요 {{ post.post_like || 0 }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </q-card-section>
@@ -48,10 +56,12 @@
 import { computed } from 'vue';
 import { date } from 'quasar';
 import { usePostsStore } from '../stores/postsStore';
+import { useCommentsStore } from '../stores/commentsStore';
 
-const store = usePostsStore();
+const postsStore = usePostsStore();
+const commentsStore = useCommentsStore();
 
-const post = computed(() => store.selectedPost);
+const post = computed(() => postsStore.selectedPost);
 
 const formatDate = (dateString: string) => {
   return date.formatDate(dateString, 'YYYY-MM-DD HH:mm');

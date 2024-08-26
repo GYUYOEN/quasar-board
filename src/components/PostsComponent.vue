@@ -20,7 +20,7 @@ import { usePostsStore } from '../stores/postsStore';
 import { postColumn } from '../assets/column/index';
 import { getPostDetail } from 'src/apicontroller/postDetail';
 import { useRouter } from 'vue-router';
-import { PostData } from '../assets/interfaces/index';
+import { PostDto } from 'src/assets/interfaces';
 
 const props = defineProps<{
   routeInfo: string;
@@ -29,11 +29,11 @@ const props = defineProps<{
 const router = useRouter();
 const store = usePostsStore();
 
-const onRowClick = async (evt: Event, row: PostData) => {
+const onRowClick = async (evt: Event, row: PostDto) => {
   try {
-    const postDetail = await getPostDetail(row.postId);
+    const postDetail = await getPostDetail(row.post_id);
     store.setSelectedPost(postDetail);
-    router.push({ name: 'PostDetail', params: { postId: row.postId } });
+    router.push({ name: 'PostDetail', params: { postId: row.post_id } });
   } catch (error) {
     console.error('Failed to fetch post detail:', error);
   }
