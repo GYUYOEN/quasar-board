@@ -30,7 +30,7 @@ export const usePostsStore = defineStore('posts', {
         );
         this.posts = response.items.map((post) => ({
           ...post,
-          post_datetime: post.post_datetime.split('T')[0],
+          post_datetime: new Date(post.post_datetime).toLocaleDateString(),
         }));
         this.totalPages = response.totalPages;
       } catch (error) {
@@ -43,6 +43,7 @@ export const usePostsStore = defineStore('posts', {
     },
     setCurrentRoute(route: string) {
       this.currentRoute = route;
+      this.currentPage = 1;
       this.fetchPosts();
     },
     setSelectedPost(post: PostDto) {

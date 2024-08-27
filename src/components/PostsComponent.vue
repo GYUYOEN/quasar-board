@@ -5,7 +5,7 @@
       bordered
       :title="store.tableTitle"
       :rows="store.posts"
-      :columns="postColumn"
+      :columns="column"
       :rows-per-page-options="[store.rowsPerPage]"
       row-key="postId"
       hide-bottom
@@ -13,8 +13,7 @@
     >
       <template v-slot:body-cell-post_id="props">
         <q-td :props="props">
-          <div v-if="isTopPost(props.row)">Top</div>
-          <div v-else>{{ props.row.post_id }}</div>
+          {{ isTopPost(props.row) ? 'Top' : props.row.post_id }}
         </q-td>
       </template>
       <template v-slot:body-cell-post_title="props">
@@ -33,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, watch } from 'vue';
+import { computed } from 'vue';
 import { usePostsStore } from '../stores/postsStore';
 import { postColumn } from '../assets/column/index';
 import { getPostDetail } from 'src/apicontroller/postDetail';
@@ -48,14 +47,16 @@ const props = defineProps<{
 const router = useRouter();
 const store = usePostsStore();
 
-const isTopPost = (row: PostDto) => {
+const column = computed(() => postColumn);
+
+const isTopPost = (row: PostDto): boolean => {
   if (!row.notice_end_date) return false;
   const now = new Date();
   const endDate = new Date(row.notice_end_date);
   return row.post_notice === 1 && endDate > now;
 };
 
-const onRowClick = async (evt: Event, row: PostDto) => {
+const onRowClick = async (evt: Event, row: PostDto): Promise<void> => {
   try {
     const postDetail = await getPostDetail(row.post_id);
     store.setSelectedPost(postDetail);
@@ -65,14 +66,8 @@ const onRowClick = async (evt: Event, row: PostDto) => {
   }
 };
 
-watch(
-  () => props.routeInfo,
-  (newRoute) => {
-    store.setCurrentRoute(newRoute);
-  }
-);
-
-onMounted(() => {
+computed(() => {
   store.setCurrentRoute(props.routeInfo);
+  return props.routeInfo;
 });
 </script>
