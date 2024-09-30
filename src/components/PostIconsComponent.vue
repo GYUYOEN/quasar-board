@@ -19,6 +19,8 @@ const props = defineProps<{
   postId: number | string;
 }>();
 
+console.log(props.postDateTime);
+
 const isNew = computed(() => {
   const postDate = new Date(props.postDateTime);
   const now = new Date();

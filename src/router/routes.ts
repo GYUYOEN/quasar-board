@@ -16,6 +16,10 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/PostIdPage.vue'),
         props: true,
       },
+      {
+        path: '/home',
+        component: () => import('src/components/HomeMain.vue'),
+      },
     ],
   },
 
