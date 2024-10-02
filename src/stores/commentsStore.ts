@@ -8,9 +8,6 @@ export const useCommentsStore = defineStore('comments', {
     comments: [] as CommentDto[],
     commentTotalCount: 0,
   }),
-  getters: {
-    getCommentCount: (state) => state.commentTotalCount,
-  },
   actions: {
     async fetchComments() {
       try {
@@ -24,6 +21,7 @@ export const useCommentsStore = defineStore('comments', {
     },
     setPostId(id: number) {
       this.postId = id;
+      this.fetchComments();
     },
   },
 });

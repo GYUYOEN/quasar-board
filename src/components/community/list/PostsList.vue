@@ -33,12 +33,12 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { usePostsStore } from '../stores/postsStore';
-import { postColumn } from '../assets/column/index';
+import { usePostsStore } from '../../../stores/postsStore';
+import { postColumn } from '../../../assets/column/index';
 import { getPostDetail } from 'src/apicontroller/postDetail';
 import { useRouter } from 'vue-router';
 import { PostDto } from 'src/assets/interfaces';
-import PostIcons from '../components/PostIconsComponent.vue';
+import PostIcons from './PostIcons.vue';
 
 const props = defineProps<{
   routeInfo: string;

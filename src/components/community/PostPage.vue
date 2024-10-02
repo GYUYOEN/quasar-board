@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { usePostsStore } from '../stores/postsStore';
+import { usePostsStore } from '../../stores/postsStore';
 
 const store = usePostsStore();
 

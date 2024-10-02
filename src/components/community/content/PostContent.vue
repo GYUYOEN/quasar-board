@@ -20,7 +20,9 @@
               게시날짜: {{ formatDate(post.post_datetime) }}
             </div>
             <div class="row items-center q-gutter-sm">
-              <span class="text-caption">댓글 {{ commentCount }}</span>
+              <span class="text-caption"
+                >댓글 {{ commentsStore.commentTotalCount }}</span
+              >
               <span class="text-caption">조회 {{ post.post_hit }}</span>
               <span class="text-caption">좋아요 {{ post.post_like }}</span>
             </div>
@@ -53,8 +55,8 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { date } from 'quasar';
-import { usePostsStore } from '../stores/postsStore';
-import { useCommentsStore } from '../stores/commentsStore';
+import { usePostsStore } from '../../../stores/postsStore';
+import { useCommentsStore } from '../../../stores/commentsStore';
 
 const postsStore = usePostsStore();
 const commentsStore = useCommentsStore();
@@ -64,8 +66,6 @@ const post = computed(() => postsStore.selectedPost);
 const formatDate = (dateString: string) => {
   return date.formatDate(dateString, 'YYYY-MM-DD HH:mm');
 };
-
-const commentCount = computed(() => commentsStore.getCommentCount);
 
 const toggleLike = () => {
   // 여기에 좋아요 기능 구현

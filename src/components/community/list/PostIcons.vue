@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
-import { useCommentsStore } from '../stores/commentsStore';
+import { useCommentsStore } from '../../../stores/commentsStore';
 
 const commentStore = useCommentsStore();
 const commentCount = ref(0);
@@ -32,6 +32,6 @@ const isNew = computed(() => {
 onMounted(async () => {
   commentStore.setPostId(Number(props.postId));
   await commentStore.fetchComments();
-  commentCount.value = commentStore.getCommentCount;
+  commentCount.value = commentStore.commentTotalCount;
 });
 </script>

@@ -13,13 +13,14 @@
 import { computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { usePostsStore } from '../stores/postsStore';
-import PostsComponent from 'components/PostsComponent.vue';
-import PageComponent from 'components/PageComponent.vue';
+import PostsComponent from 'src/components/community/list/PostsList.vue';
+import PageComponent from 'src/components/community/PostPage.vue';
 
 const route = useRoute();
 const store = usePostsStore();
 
 const currentRoute = computed(() => route.fullPath);
+
 watch(currentRoute, (newRoute) => {
   store.setCurrentRoute(newRoute);
 });

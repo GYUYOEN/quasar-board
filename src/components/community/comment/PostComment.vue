@@ -43,7 +43,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { date } from 'quasar';
-import { useCommentsStore } from '../stores/commentsStore';
+import { useCommentsStore } from '../../../stores/commentsStore';
 import { useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';
 
@@ -53,7 +53,6 @@ const { comments } = storeToRefs(store);
 
 onMounted(() => {
   store.setPostId(Number(route.params.postId));
-  store.fetchComments();
 });
 
 const formatDate = (dateString: string | null) => {

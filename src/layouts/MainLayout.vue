@@ -137,155 +137,11 @@
       <div class="drawer-content">
         <q-scroll-area class="fit woori-drawer">
           <q-list padding>
-            <q-item clickable v-ripple to="/home">
-              <q-item-section avatar>
-                <q-icon name="home" size="xs" />
-              </q-item-section>
-
-              <q-item-section> 홈 </q-item-section>
-            </q-item>
-
-            <q-expansion-item
-              icon="perm_identity"
-              expand-icon-class="text-white"
-            >
-              <template v-slot:header>
-                <q-item-section avatar>
-                  <q-icon name="forum" class="text-white" />
-                </q-item-section>
-                <q-item-section>
-                  <span class="text-white">소통센터</span>
-                </q-item-section>
-              </template>
-              <q-list class="q-pl-md">
-                <q-tree
-                  :nodes="simple"
-                  node-key="label"
-                  no-connectors
-                  text-color="white"
-                  color="white"
-                  v-model:expanded="expanded"
-                  class="custom-tree"
-                >
-                  <template v-slot:default-header="prop">
-                    <div class="row items-center full-width">
-                      <q-item
-                        clickable
-                        v-ripple
-                        class="full-width q-pl-md"
-                        @click="handleItemClick(prop.node.label)"
-                      >
-                        <q-item-section>
-                          {{ prop.node.label }}
-                        </q-item-section>
-                      </q-item>
-                    </div>
-                  </template>
-                </q-tree>
-              </q-list>
-            </q-expansion-item>
-
-            <q-expansion-item
-              icon="perm_identity"
-              label="업무센터"
-              expand-icon-class="text-white"
-            >
-              <template v-slot:header>
-                <q-item-section avatar>
-                  <q-icon name="business_center" class="text-white" />
-                </q-item-section>
-                <q-item-section>
-                  <span class="text-white">업무센터</span>
-                </q-item-section>
-              </template>
-              <q-list padding class="q-pl-md custom-list">
-                <q-item to="" clickable v-ripple>
-                  <q-item-section>영업관리 핸드북</q-item-section>
-                </q-item>
-                <q-item to="" clickable v-ripple>
-                  <q-item-section>사업장관리 핸드북</q-item-section>
-                </q-item>
-                <q-item to="" clickable v-ripple>
-                  <q-item-section>도급관리 핸드북</q-item-section>
-                </q-item>
-                <q-item to="" clickable v-ripple>
-                  <q-item-section>인사면접 핸드북</q-item-section>
-                </q-item>
-                <q-item clickable v-ripple>
-                  <q-item-section>회계점검 핸드북</q-item-section>
-                </q-item>
-                <q-item to="" clickable v-ripple>
-                  <q-item-section>과태료 핸드북</q-item-section>
-                </q-item>
-                <q-item to="" clickable v-ripple>
-                  <q-item-section>SNC업무 핸드북</q-item-section>
-                </q-item>
-                <q-item to="" clickable v-ripple>
-                  <q-item-section>우리TIMS 메뉴얼</q-item-section>
-                </q-item>
-              </q-list>
-            </q-expansion-item>
-
-            <q-expansion-item label="자료센터" expand-icon-class="text-white">
-              <template v-slot:header>
-                <q-item-section avatar>
-                  <q-icon name="library_books" class="text-white" />
-                </q-item-section>
-                <q-item-section>
-                  <span class="text-white">자료센터</span>
-                </q-item-section>
-              </template>
-              <q-list class="q-pl-md custom-list">
-                <q-item to="" clickable v-ripple>
-                  <q-item-section>양식·서식</q-item-section>
-                </q-item>
-                <q-item to="" clickable v-ripple>
-                  <q-item-section>규정</q-item-section>
-                </q-item>
-                <q-item to="" clickable v-ripple>
-                  <q-item-section>관계 법령</q-item-section>
-                </q-item>
-                <q-item to="" clickable v-ripple>
-                  <q-item-section>교육자료</q-item-section>
-                </q-item>
-                <q-item to="" clickable v-ripple>
-                  <q-item-section>우리관리 FAQ</q-item-section>
-                </q-item>
-                <q-item to="" clickable v-ripple>
-                  <q-item-section>우리관리 100문 100답</q-item-section>
-                </q-item>
-                <q-item to="" clickable v-ripple>
-                  <q-item-section>공동주택과 위탁관리</q-item-section>
-                </q-item>
-              </q-list>
-            </q-expansion-item>
-            <q-expansion-item
-              label="안전보건이행점검"
-              expand-icon-class="text-white"
-            >
-              <template v-slot:header>
-                <q-item-section avatar>
-                  <q-icon name="health_and_safety" class="text-white" />
-                </q-item-section>
-                <q-item-section>
-                  <span class="text-white">안전보건이행점검</span>
-                </q-item-section>
-              </template>
-              <q-list class="q-pl-md custom-list">
-                <q-item to="" clickable v-ripple>
-                  <q-item-section>본부별 이행률</q-item-section>
-                </q-item>
-                <q-item to="" clickable v-ripple>
-                  <q-item-section>항목별 이행률</q-item-section>
-                </q-item>
-                <q-item to="" clickable v-ripple>
-                  <q-item-section>이행률 저조사업장</q-item-section>
-                </q-item>
-                <q-item to="" clickable v-ripple>
-                  <q-item-section>위험성평가 미실시</q-item-section>
-                </q-item>
-              </q-list>
-            </q-expansion-item>
+            <side-list type="home" iconName="home" label="홈" />
+            <side-list type="tree" iconName="forum" label="소통센터" />
+            <side-list iconName="business_center" label="업무센터" />
+            <side-list iconName="library_books" label="자료센터" />
+            <side-list iconName="health_and_safety" label="안전보건이행점검" />
           </q-list>
         </q-scroll-area>
       </div>
@@ -310,78 +166,12 @@
 </template>
 
 <script setup lang="ts">
-import { menuList } from 'src/assets/column';
+import SideList from './SideList.vue';
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 
 const drawer = ref(false);
 const miniState = ref(true);
-
-const router = useRouter();
 const search = ref();
-const expanded = ref([]);
-
-interface TreeNode {
-  label: string;
-  children?: TreeNode[];
-}
-
-const simple = ref<TreeNode[]>([]);
-
-simple.value = [
-  { label: '전체공지글보기' },
-  { label: '전체게시글보기' },
-  {
-    label: '공지',
-    children: [
-      { label: '업무연락' },
-      { label: '전사공지' },
-      { label: '본사공지' },
-    ],
-  },
-  {
-    label: '정보마당',
-    children: [
-      { label: '우리뉴스' },
-      { label: '관리업관련 정보' },
-      { label: '우리관리 지식인' },
-      { label: '유용한 업무팁 공유' },
-      { label: 'CS자료실' },
-      { label: '채용정보' },
-      { label: '사내제안' },
-      { label: '공동구매' },
-      { label: '전산시스템 문의' },
-    ],
-  },
-  {
-    label: '직원소통',
-    children: [
-      { label: '관리소장직' },
-      { label: '관리직' },
-      { label: '기술직' },
-      { label: '경리직' },
-      { label: '서무직' },
-      { label: '커뮤니티직' },
-      { label: '자유토크' },
-      { label: '경조사' },
-    ],
-  },
-  {
-    label: '동호회',
-    children: [
-      { label: '동호회일반' },
-      { label: '산악회' },
-      { label: '여소회' },
-    ],
-  },
-];
-
-const handleItemClick = (label: string) => {
-  const menuItem = menuList.find((item) => item.label === label);
-  if (menuItem) {
-    router.push(menuItem.route);
-  }
-};
 
 const drawerClick = (e: Event) => {
   if (miniState.value) {

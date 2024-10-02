@@ -84,7 +84,7 @@ export const menuList = [
   },
   {
     icon: '',
-    label: '관리업관련정보',
+    label: '관리업관련 정보',
     route: '/board/b-b-2',
     separator: false,
   },
@@ -96,7 +96,7 @@ export const menuList = [
   },
   {
     icon: '',
-    label: '유용힌 업무팁 공유',
+    label: '유용한 업무팁 공유',
     route: '/board/b-b-4',
     separator: false,
   },

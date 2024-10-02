@@ -32,7 +32,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
-import { useFilesStore } from '../stores/filesStore';
+import { useFilesStore } from '../../../stores/filesStore';
 
 const route = useRoute();
 const filesStore = useFilesStore();

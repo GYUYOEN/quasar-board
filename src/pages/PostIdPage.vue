@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import PostContentComponent from 'components/PostContentComponent.vue';
-import FileListComponent from 'components/FileListComponent.vue';
-import CommentComponent from 'components/CommentComponent.vue';
+import PostContentComponent from 'src/components/community/content/PostContent.vue';
+import FileListComponent from 'src/components/community/file/FileList.vue';
+import CommentComponent from 'src/components/community/comment/PostComment.vue';
 </script>

@@ -61,7 +61,9 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { menuList } from 'src/assets/column';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const expanded = ref([]);
 
 const props = defineProps({
@@ -121,29 +123,29 @@ const menuItems = {
     },
   ],
   업무센터: [
-    { label: '영업관리 핸드북', route: '' },
-    { label: '사업장관리 핸드북', route: '' },
-    { label: '도급관리 핸드북', route: '' },
-    { label: '인사면접 핸드북', route: '' },
-    { label: '회계점검 핸드북', route: '' },
-    { label: '과태료 핸드북', route: '' },
-    { label: 'SNC업무 핸드북', route: '' },
-    { label: '우리TIMS 메뉴얼', route: '' },
+    { label: '영업관리 핸드북' },
+    { label: '사업장관리 핸드북' },
+    { label: '도급관리 핸드북' },
+    { label: '인사면접 핸드북' },
+    { label: '회계점검 핸드북' },
+    { label: '과태료 핸드북' },
+    { label: 'SNC업무 핸드북' },
+    { label: '우리TIMS 메뉴얼' },
   ],
   자료센터: [
-    { label: '양식·서식', route: '' },
-    { label: '규정', route: '' },
-    { label: '관계 법령', route: '' },
-    { label: '교육자료', route: '' },
-    { label: '우리관리 FAQ', route: '' },
-    { label: '우리관리 100문 100답', route: '' },
-    { label: '공동주택과 위탁관리', route: '' },
+    { label: '양식·서식' },
+    { label: '규정' },
+    { label: '관계 법령' },
+    { label: '교육자료' },
+    { label: '우리관리 FAQ' },
+    { label: '우리관리 100문 100답' },
+    { label: '공동주택과 위탁관리' },
   ],
   안전보건이행점검: [
-    { label: '본부별 이행률', route: '' },
-    { label: '항목별 이행률', route: '' },
-    { label: '이행률 저조사업장', route: '' },
-    { label: '위험성평가 미실시', route: '' },
+    { label: '본부별 이행률' },
+    { label: '항목별 이행률' },
+    { label: '이행률 저조사업장' },
+    { label: '위험성평가 미실시' },
   ],
 };
 
